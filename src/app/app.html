@@ -1,4 +1,4 @@
-<main class="min-h-screen bg-slate-950 text-slate-50">
+<main class="dark min-h-screen bg-slate-950 text-slate-50">
   <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
     <header class="glass-panel mb-8 overflow-hidden">
       <div class="flex flex-col gap-6 px-6 py-8 md:flex-row md:items-center md:justify-between lg:px-8">
@@ -28,56 +28,62 @@
       <aside class="glass-panel p-5 sm:p-6">
         <div class="mb-6 flex items-center justify-between">
           <div>
-            <p class="text-sm font-semibold uppercase tracking-[0.22em] text-sky-300">Formulário</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.22em] text-primary">Formulário</p>
             <h2 class="mt-2 text-2xl font-bold text-white">
               {{ editingId !== null ? 'Editar livro' : 'Adicionar livro' }}
             </h2>
           </div>
-          <button class="action-button secondary" type="button" (click)="resetForm()">Limpar</button>
+          <p-button class="shrink-0" label="Limpar" severity="secondary" [outlined]="true" (onClick)="resetForm()" />
         </div>
 
         <form class="space-y-4" (ngSubmit)="saveBook()">
           <div>
             <label class="label" for="title">Título</label>
-            <input id="title" class="input-field" type="text" [(ngModel)]="bookForm.title" name="title" placeholder="Ex.: O Hobbit" />
+            <input id="title" pInputText class="w-full" type="text" [(ngModel)]="bookForm.title" name="title" placeholder="Ex.: O Hobbit" />
           </div>
 
           <div>
             <label class="label" for="author">Autor</label>
-            <input id="author" class="input-field" type="text" [(ngModel)]="bookForm.author" name="author" placeholder="Ex.: J. R. R. Tolkien" />
+            <input id="author" pInputText class="w-full" type="text" [(ngModel)]="bookForm.author" name="author" placeholder="Ex.: J. R. R. Tolkien" />
           </div>
 
           <div class="grid gap-4 sm:grid-cols-2">
             <div>
               <label class="label" for="pages">Páginas</label>
-              <input id="pages" class="input-field" type="number" min="1" [(ngModel)]="bookForm.pages" name="pages" />
+              <input id="pages" pInputText class="w-full" type="number" min="1" [(ngModel)]="bookForm.pages" name="pages" />
             </div>
 
             <div>
               <label class="label" for="rating">Avaliação</label>
-              <select id="rating" class="input-field" [(ngModel)]="bookForm.rating" name="rating">
-                <option [ngValue]="1">1/5</option>
-                <option [ngValue]="2">2/5</option>
-                <option [ngValue]="3">3/5</option>
-                <option [ngValue]="4">4/5</option>
-                <option [ngValue]="5">5/5</option>
-              </select>
+              <p-select
+                inputId="rating"
+                class="w-full"
+                [options]="ratingOptions"
+                [(ngModel)]="bookForm.rating"
+                name="rating"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Selecione uma nota"
+              />
             </div>
           </div>
 
           <div>
             <label class="label" for="publicationDate">Data de publicação</label>
-            <input id="publicationDate" class="input-field" type="date" [(ngModel)]="bookForm.publicationDate" name="publicationDate" />
+            <input id="publicationDate" pInputText class="w-full" type="date" [(ngModel)]="bookForm.publicationDate" name="publicationDate" />
           </div>
 
           <label class="mt-2 flex cursor-pointer items-center justify-between rounded-2xl border border-slate-700 bg-slate-900/70 px-4 py-3 text-sm text-slate-200">
             <span>Livro lido</span>
-            <input class="h-5 w-5 accent-emerald-500" type="checkbox" [(ngModel)]="bookForm.isRead" name="isRead" />
+            <p-checkbox inputId="isRead" [(ngModel)]="bookForm.isRead" name="isRead" [binary]="true" />
           </label>
 
-          <button class="action-button primary w-full" type="submit">
-            {{ editingId !== null ? 'Salvar alterações' : 'Adicionar à biblioteca' }}
-          </button>
+          <p-button
+            class="w-full"
+            [label]="editingId !== null ? 'Salvar alterações' : 'Adicionar à biblioteca'"
+            type="submit"
+            [fluid]="true"
+          />
         </form>
       </aside>
 
@@ -90,9 +96,9 @@
         </div>
 
         <div class="grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
-          <article
+          <p-card
             *ngFor="let book of books"
-            class="book-card"
+            class="book-card h-full"
             [class.selected]="selectedBook?.id === book.id"
             (click)="selectBook(book)"
           >
@@ -101,9 +107,7 @@
                 <p class="text-xs uppercase tracking-[0.24em] text-sky-300">Livro</p>
                 <h3 class="mt-2 text-xl font-bold text-white">{{ book.title }}</h3>
               </div>
-              <span class="status-badge" [class.read]="book.isRead" [class.unread]="!book.isRead">
-                {{ book.isRead ? 'Lido' : 'Na fila' }}
-              </span>
+              <p-tag class="ml-2" [value]="book.isRead ? 'Lido' : 'Na fila'" [severity]="book.isRead ? 'success' : 'warn'" />
             </div>
 
             <div class="space-y-2 text-sm text-slate-300">
@@ -118,9 +122,15 @@
                 <span *ngFor="let star of [1,2,3,4,5]">{{ star <= book.rating ? '★' : '☆' }}</span>
               </div>
 
-              <button class="action-button danger" type="button" (click)="$event.stopPropagation(); deleteBook(book.id)">Excluir</button>
+              <p-button
+                class="shrink-0"
+                label="Excluir"
+                severity="danger"
+                [outlined]="true"
+                (onClick)="$event.stopPropagation(); deleteBook(book.id)"
+              />
             </div>
-          </article>
+          </p-card>
         </div>
       </section>
     </section>

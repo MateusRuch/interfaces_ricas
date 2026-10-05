@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from '@openng/optimus-ui/button';
+import { CardModule } from '@openng/optimus-ui/card';
+import { CheckboxModule } from '@openng/optimus-ui/checkbox';
+import { InputTextModule } from '@openng/optimus-ui/inputtext';
+import { SelectModule } from '@openng/optimus-ui/select';
+import { TagModule } from '@openng/optimus-ui/tag';
 
 interface Book {
   id: number;
@@ -24,11 +30,28 @@ interface BookForm {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ButtonModule,
+    CardModule,
+    CheckboxModule,
+    InputTextModule,
+    SelectModule,
+    TagModule,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
+  readonly ratingOptions = [
+    { label: '1/5', value: 1 },
+    { label: '2/5', value: 2 },
+    { label: '3/5', value: 3 },
+    { label: '4/5', value: 4 },
+    { label: '5/5', value: 5 },
+  ];
+
   books: Book[] = [
     {
       id: 1,

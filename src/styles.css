@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '@openng/optimus-ui-tailwindcss';
 
 :root {
   font-family: 'Inter', 'Segoe UI', sans-serif;

@@ -45,52 +45,6 @@
   color: rgba(148, 163, 184, 0.96);
 }
 
-.input-field {
-  width: 100%;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(148, 163, 184, 0.24);
-  background: rgba(15, 23, 42, 0.75);
-  padding: 0.8rem 0.9rem;
-  color: white;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.input-field:focus {
-  border-color: rgba(96, 165, 250, 0.8);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
-}
-
-.action-button {
-  border: none;
-  border-radius: 0.9rem;
-  padding: 0.8rem 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.action-button:hover {
-  transform: translateY(-1px);
-}
-
-.action-button.primary {
-  background: linear-gradient(135deg, #38bdf8, #8b5cf6);
-  color: white;
-}
-
-.action-button.secondary {
-  background: rgba(148, 163, 184, 0.1);
-  color: #e2e8f0;
-  border: 1px solid rgba(148, 163, 184, 0.22);
-}
-
-.action-button.danger {
-  background: rgba(239, 68, 68, 0.12);
-  border: 1px solid rgba(239, 68, 68, 0.34);
-  color: #fecaca;
-}
-
 .book-card {
   cursor: pointer;
   border-radius: 1.35rem;
@@ -108,30 +62,6 @@
 .book-card.selected {
   border-color: rgba(99, 102, 241, 0.8);
   box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.8), 0 22px 40px rgba(79, 70, 229, 0.15);
-}
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  padding: 0.35rem 0.7rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.status-badge.read {
-  background: rgba(16, 185, 129, 0.12);
-  color: #a7f3d0;
-  border: 1px solid rgba(16, 185, 129, 0.35);
-}
-
-.status-badge.unread {
-  background: rgba(251, 191, 36, 0.12);
-  color: #fde68a;
-  border: 1px solid rgba(251, 191, 36, 0.35);
 }
 
 .info-tile {
